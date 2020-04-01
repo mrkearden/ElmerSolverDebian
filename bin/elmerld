@@ -1,0 +1,19 @@
+#!/bin/sh -f
+
+if test "$ELMER_LIB" = ""; then
+  if  test "$ELMER_HOME" = ""; then
+     LIBDIR=/home/lola/elmer/install/lib
+  else
+     LIBDIR=$ELMER_HOME/lib
+  fi
+else
+  LIBDIR=$ELMER_LIB
+fi
+
+LD=/usr/bin/f95
+cmd="$LD  -fPIC -shared $* -L/home/lola/elmer/install/lib/elmersolver -L$LIBDIR -lelmersolver"
+printf "%s " $cmd
+printf "\n"
+$LD  -fPIC -shared $* -L/home/lola/elmer/install/lib/elmersolver -L$LIBDIR -lelmersolver
+#      $* -L$LIBDIR -lelmersolver
+#      $*
